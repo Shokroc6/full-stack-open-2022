@@ -1,0 +1,18 @@
+title exercise-0.6
+
+note over browser:
+set the function of "submit" button
+fill in the text field
+click the "submit" button
+creat a new note and add to notes
+refresh the notes
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over server:
+Create a new Note object
+add it to an array 'notes'
+end note
+
+server-->browser: HTTP 201
