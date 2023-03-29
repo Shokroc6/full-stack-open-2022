@@ -1,0 +1,16 @@
+note over browser:
+Fill in the text field
+click the "submit" button
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over server:
+Create a new Note object
+add it to an array 'notes'
+redirect to '/notes'
+end note
+
+server-->browser: HTTP 302
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML-code
