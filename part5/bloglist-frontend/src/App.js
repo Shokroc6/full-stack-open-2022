@@ -25,6 +25,7 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
+    console.log('hasLocalStorage')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -49,7 +50,7 @@ const App = () => {
     }
   }
 
-  const creatBlog = async (blogObject) => {
+  const createBlog = async (blogObject) => {
     blogFormRef.current.toggleVisibility()
     const returnedBlog = await blogService.create(blogObject)
     setBlogs(blogs.concat(returnedBlog).sort((a, b) => b.likes - a.likes))
@@ -95,8 +96,8 @@ const App = () => {
               logout
           </button>
         </p>
-        <Togglable buttonLabel="new note" ref={blogFormRef}>
-          <BlogForm creatBlog={creatBlog} />
+        <Togglable buttonLabel="new blog" ref={blogFormRef}>
+          <BlogForm createBlog={createBlog} />
         </Togglable>
       </div>
       }

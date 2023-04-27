@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const BlogForm = ({ creatBlog }) => {
+const BlogForm = ({ createBlog }) => {
 
   const [newTitle, setNewTitle] = useState('')
   const [newAuthor, setNewAuthor] = useState('')
@@ -8,7 +8,7 @@ const BlogForm = ({ creatBlog }) => {
 
   const addBlog = (event) => {
     event.preventDefault()
-    creatBlog({
+    createBlog({
       title: newTitle,
       author: newAuthor,
       url: newUrl
@@ -24,6 +24,7 @@ const BlogForm = ({ creatBlog }) => {
       <div>
         title:
         <input
+          id='title-input'
           value={newTitle}
           onChange={
             (event) => {setNewTitle(event.target.value)}
@@ -33,6 +34,7 @@ const BlogForm = ({ creatBlog }) => {
       <div>
         author:
         <input
+          id='author-input'
           value={newAuthor}
           onChange={
             (event) => {setNewAuthor(event.target.value)}
@@ -42,6 +44,7 @@ const BlogForm = ({ creatBlog }) => {
       <div>
         url:
         <input
+          id='url-input'
           value={newUrl}
           onChange={
             (event) => {setNewUrl(event.target.value)}
