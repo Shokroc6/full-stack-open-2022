@@ -13,5 +13,5 @@ const addDiagnosis = () => {
 
 export default {
   getEntries,
-  addDiagnosis,
+  addDiagnosis
 };

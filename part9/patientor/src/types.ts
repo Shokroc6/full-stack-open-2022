@@ -1,7 +1,13 @@
-export interface DiagnosisEntry {
+export interface Diagnosis {
   code: string;
   name: string;
   latin?: string;
+}
+
+export enum Gender {
+  Male = "male",
+  Female = "female",
+  Other = "other"
 }
 
 interface BaseEntry {
@@ -9,7 +15,7 @@ interface BaseEntry {
   description: string;
   date: string;
   specialist: string;
-  diagnosisCodes?: Array<DiagnosisEntry['code']>;
+  diagnosisCodes?: Array<Diagnosis['code']>;
 }
 
 export enum HealthCheckRating {
@@ -24,12 +30,12 @@ interface HealthCheckEntry extends BaseEntry {
   healthCheckRating: HealthCheckRating;
 }
 
-export interface Discharge {
+interface Discharge {
   date: string;
   criteria: string;
 }
 
-export interface SickLeave {
+interface SickLeave {
   startDate: string;
   endDate: string;
 }
@@ -50,12 +56,8 @@ export type Entry =
   | OccupationalHealthcareEntry
   | HealthCheckEntry;
 
-// Define special omit for unions
-type UnionOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
-// Define Entry without the 'id' property
-export type EntryWithoutId = UnionOmit<Entry, 'id'>;
 
-export interface PatientEntry {
+export interface Patient {
   id: string;
   name: string;
   dateOfBirth: string;
@@ -65,12 +67,14 @@ export interface PatientEntry {
   entries: Entry[];
 }
 
-export type NonSensitivePatientEntry = Omit<PatientEntry, 'ssn' | 'entries'>;
+export type PatientFormValues = Omit<Patient, "id" | "entries">;
 
-export type NewPatientEntry = Omit<PatientEntry, "id">;
+export enum EntryType {
+  HealthCheck = 'HealthCheck',
+  Hospital = 'Hospital',
+  OccupationalHealthcare = 'OccupationalHealthcare',
+};
 
-export enum Gender {
-  Male = "male",
-  Female = "female",
-  Other = "other",
-}
+type UnionOmit<T, K extends string | number | symbol> = T extends unknown ? Omit<T, K> : never;
+// Define Entry without the 'id' property
+export type EntryWithoutId = UnionOmit<Entry, 'id'>;
